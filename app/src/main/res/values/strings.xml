@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Currency Converter</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_actitivity_main">Currency Converter</string>
+    <string name="select_currency">Select currency</string>
+    <string name="from_currency">From:</string>
+    <string name="to_currency">To:</string>
+    <string name="amount">Amount:</string>
+    <string name="enter_amount">Enter amount</string>
+    <string name="exchange_rate_here">Your exchange rate will be displayed here</string>
+    <string-array name="currency_name_array">
+        <item>Select currency</item>
+        <item>SEK</item>
+        <item>USD</item>
+        <item>EUR</item>
+        <item>GBP</item>
+    </string-array>
+    <string-array name="currency_rate_array">
+        <item>0.0</item>
+        <item>1.0</item>
+        <item>8.8</item>
+        <item>9.54</item>
+        <item>10.13</item>
+    </string-array>
+
+</resources>
