@@ -1,12 +1,9 @@
 package com.example.makem.currencycalculator;
 
-//import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-//import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
-//import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,16 +26,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initGUI(); //Tilldela alla controllers eventlyssnare, värden m.m
+        initGUI();
     }
 
     private void initGUI()
     {
-        //Sätt värden för arrayer
         currencyArray = getResources().getStringArray(R.array.currency_name_array);
         rateArray = getResources().getStringArray(R.array.currency_rate_array);
 
-        //Arrayadapter
+        //Array adapter
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencyArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -46,10 +42,9 @@ public class MainActivity extends AppCompatActivity {
         amountEditText = (EditText)findViewById(R.id.editTextAmount);
         amountEditText.addTextChangedListener(new MyTextWatcher());
 
-        //Sätt instansvariabeln textViewSum
         textViewSum = (TextView)findViewById(R.id.textViewSum);
 
-        //Sätt värden till spinners med valutor samt eventlyssnare CurrencySelectedListener
+        //Populate spinners and add event listeners
         spinnerFrom = (Spinner)findViewById(R.id.spinnerFrom);
         spinnerFrom.setAdapter(adapter);
         spinnerFrom.setOnItemSelectedListener(new CurrencySelectedListener());
@@ -58,28 +53,25 @@ public class MainActivity extends AppCompatActivity {
         spinnerTo.setOnItemSelectedListener(new CurrencySelectedListener());
     }
 
-    //Metod som gör uträkningen och presenterar den i GUI
     private void calculateExchangeRate()
     {
-        //Få index på valt alternativ i spinners
         int selectedIndexFrom = spinnerFrom.getSelectedItemPosition();
         int selectedIndexTo = spinnerTo.getSelectedItemPosition();
 
-        //Om valda valutors index är 0 så har användaren inte valt två valutor att konvertera
         if(selectedIndexFrom > 0 && selectedIndexTo > 0)
         {
             try {
-                double from = Double.parseDouble(rateArray[selectedIndexFrom]); //Ta index som motsvarar vald valuta, och hämta motsvarande index i värdearrayen i strings.xml
-                double to = Double.parseDouble(rateArray[selectedIndexTo]); //Ta index som motsvarar vald valuta, och hämta motsvarande index i värdearrayen i strings.xml
-                double amount = Double.parseDouble(amountEditText.getText().toString()); //Hämta input från amountEditTextcontrollern
-                double sum = amount * (from / to); //Själva uträkningen för konverteringen
-                textViewSum.setText(String.format("%.2f %s", sum, currencyArray[selectedIndexTo])); //Skriv ut summan med två decimaler samt vilken valuta som konverteringen gjordes TILL
+                double from = Double.parseDouble(rateArray[selectedIndexFrom]);
+                double to = Double.parseDouble(rateArray[selectedIndexTo]);
+                double amount = Double.parseDouble(amountEditText.getText().toString());
+                double sum = amount * (from / to);
+                textViewSum.setText(String.format("%.2f %s", sum, currencyArray[selectedIndexTo])); //Print sum w. 2 decimals
             } catch (Exception e) {
-                Log.v("Tag", "Exception occurred, " + e); //Om det sker en exception, t ex att användaren inte matat in siffror, logga i Verbos
-                textViewSum.setText("Incorrect input or settings"); //Skriv ut ett generellt felmeddelande till GUI
+                Log.v("Tag", "Exception occurred, " + e);
+                textViewSum.setText("Incorrect input or settings");
             }
         } else{
-            textViewSum.setText(""); //Om användaren inte har valt valuta till eller från, sätt textViewSum till ingen text alls
+            textViewSum.setText("");
         }
     }
 
