@@ -19,9 +19,9 @@
     <string-array name="currency_rate_array">
         <item>0.0</item>
         <item>1.0</item>
-        <item>8.8</item>
-        <item>9.54</item>
-        <item>10.13</item>
+        <item>9.66</item>
+        <item>10.67</item>
+        <item>11.95</item>
     </string-array>
 
 </resources>
