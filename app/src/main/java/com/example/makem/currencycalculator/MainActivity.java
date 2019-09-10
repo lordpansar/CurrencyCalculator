@@ -109,3 +109,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+//Magnus Sundström
+//https://magnussundstrom.se
+//https://github.com/lordpansar
+//Twitter: @LordPansar
